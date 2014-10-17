@@ -1,0 +1,40 @@
+//  ## MODULE - NAVIGATION  ---------------------------------------------------------//
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    background-color: #EEE;
+    list-style: none;
+    margin-top: 5px;
+}
+
+nav li:first-child {
+    margin-top: 0;
+}
+
+nav a {
+    color: #000;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.page-home .nav-home,
+.page-sample .nav-sample {
+    font-weight: bold;
+}
+
+@media screen and (min-width : $breakpoint-one) {
+
+    nav ul {
+        text-align: center;
+    }
+
+    nav li {
+        display: inline-block;
+        width: 30%;
+    }
+}

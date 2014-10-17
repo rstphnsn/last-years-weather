@@ -1,0 +1,43 @@
+---
+section: "Home"
+page: "home"
+bodyclass: "page-home"
+title: "The weather last year"
+
+published: true
+layout: page.hbs
+---
+
+<div class="content">
+
+    <h1 class="summary"></h1>
+
+    <div class="weather">
+
+        <div class="temperature-today">
+            <h2>Today</h2>
+            <p class="temperature"></p>
+        </div>
+
+        <div class="temperature-last-year">
+            <h2>Last year</h2>
+            <p class="temperature"></p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="settings">
+    <div class="units">
+        <label for="displayF" class="selected"><input type="radio" name="tempUnit" id="displayF" value="us" checked>℉</label>
+        <label for="displayC"><input type="radio" name="tempUnit" id="displayC" value="si">℃</label>
+    </div>
+    <div class="dates">
+        <label for="displayYear" class="selected"><input type="radio" name="date" id="displayYear" value="year" checked>Y</label>
+        <label for="displayMonth"><input type="radio" name="date" id="displayMonth" value="month">M</label>
+        <label for="displayWeek"><input type="radio" name="date" id="displayWeek" value="week">W</label>
+        <label for="displayDay"><input type="radio" name="date" id="displayDay" value="day">D</label>
+    </div>
+
+</div>

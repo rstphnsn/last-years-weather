@@ -1,7 +1,7 @@
 var akqa = akqa || {};
 akqa.base = akqa.base || {};
 
-akqa.base.temperature = (function () {
+akqa.base.temperature = (function (window, document) {
     'use strict';
 
     var init,
@@ -9,7 +9,7 @@ akqa.base.temperature = (function () {
         url = "https://api.forecast.io/forecast/",
         lastYearsTemperature = null,
         todaysTemperature = null,
-        displayUnits = 'us',
+        displayUnit = 'us',
         displayDate = 'year',
         units = {
             'us': 'F',
@@ -24,9 +24,9 @@ akqa.base.temperature = (function () {
 
     getForecastData = function (lat, lng, getLastYear) {
         if (getLastYear) {
-            $.getJSON(url + forecastApiKey + '/' + lat + ',' + lng + ',' + getLastYear + '?units=' + displayUnits + '&callback=?', lastYearForecastSuccess);
+            $.getJSON(url + forecastApiKey + '/' + lat + ',' + lng + ',' + getLastYear + '?units=' + displayUnit + '&callback=?', lastYearForecastSuccess);
         } else {
-            $.getJSON(url + forecastApiKey + '/' + lat + ',' + lng + '?units=' + displayUnits + '&callback=?', currentForecastSuccess);
+            $.getJSON(url + forecastApiKey + '/' + lat + ',' + lng + '?units=' + displayUnit + '&callback=?', currentForecastSuccess);
         }
     },
 
@@ -53,20 +53,20 @@ akqa.base.temperature = (function () {
             targetDiv = $('.temperature-today');
             todaysTemperature = temperature;
         }
-        targetDiv.find('.temperature').empty().append(temperature + '<span class="degree">˚</span><span class="unit">' + units[displayUnits] + '</span>');
+        targetDiv.find('.temperature').empty().append(temperature + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>');
         compareTemperatures();
     },
 
     makeDateString = function (date) {
         switch (date) {
             case 'day':
-            return 'Yesterday';
+                return 'Yesterday';
             case 'week':
-            return 'Last week';
+                return 'Last week';
             case 'month':
-            return 'Last month';
+                return 'Last month';
             default:
-            return 'Last year';
+                return 'Last year';
         }
     },
 
@@ -77,17 +77,21 @@ akqa.base.temperature = (function () {
             console.log('todaysTemperature = ' + todaysTemperature);
             console.log('lastYearsTemperature = ' + lastYearsTemperature);
             temperatureDifference = todaysTemperature - lastYearsTemperature;
+
             if (todaysTemperature > lastYearsTemperature) {
-                temperatureMessage = 'It’s ' + temperatureDifference  + '<span class="degree">˚</span><span class="unit">' + units[displayUnits] + '</span>' + ' warmer than ' + makeDateString(displayDate).toLowerCase();
+                temperatureMessage = 'It’s ' + temperatureDifference  + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' warmer than ' + makeDateString(displayDate).toLowerCase();
             } else if (todaysTemperature < lastYearsTemperature) {
-                temperatureMessage = 'It’s ' + Math.abs(temperatureDifference) + '<span class="degree">˚</span><span class="unit">' + units[displayUnits] + '</span>' + ' colder than ' + makeDateString(displayDate).toLowerCase();
+                temperatureMessage = 'It’s ' + Math.abs(temperatureDifference) + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' colder than ' + makeDateString(displayDate).toLowerCase();
             } else {
                 temperatureMessage = 'It’s the same temperature as ' + makeDateString(displayDate).toLowerCase();
             }
+
             $('h1').empty().append(temperatureMessage);
             $('.temperature-last-year h2').empty().append(makeDateString(displayDate));
+
             lastYearsTemperature = null;
             todaysTemperature = null;
+
             $('.content').addClass('loaded');
         }
     },
@@ -104,17 +108,27 @@ akqa.base.temperature = (function () {
     updateDate = function (item) {
         displayDate = $(item).val();
         resetPage();
-        $('.dates label').removeClass('selected');
-        $(item).parent().addClass('selected');
+        updateDateDisplay();
         getLocation();
+        setUserPrefs();
     },
 
     updateUnits = function (item) {
-        displayUnits = $(item).val();
+        displayUnit = $(item).val();
         resetPage();
-        $('.units label').removeClass('selected');
-        $(item).parent().addClass('selected');
+        updateUnitDisplay();
         getLocation();
+        setUserPrefs();
+    },
+
+    updateUnitDisplay = function () {
+        $('.units label').removeClass('selected');
+        $('.units label[for=display_' + displayUnit + ']').addClass('selected');
+    },
+
+    updateDateDisplay = function () {
+        $('.dates label').removeClass('selected');
+        $('.dates label[for=display_' + displayDate + ']').addClass('selected');
     },
 
     resetPage = function () {
@@ -136,10 +150,28 @@ akqa.base.temperature = (function () {
         getForecastData(lat, lng, date);
     },
 
-//365 x 24 x 60 x 60 x1000
-//30 x 24 x 60 x 60 x1000
-//7 x 24 x 60 x 60 x1000
-//1 x 24 x 60 x 60 x1000
+    setUserPrefs = function () {
+        if (window.localStorage) {
+            window.localStorage.setItem('lyw.displayUnit', displayUnit);
+            window.localStorage.setItem('lyw.displayDate', displayDate);
+        }
+    },
+
+    getUserPrefs = function (a, b) {
+        if (window.localStorage) {
+            if (window.localStorage.getItem('lyw.displayUnit')) {
+                displayUnit = window.localStorage.getItem('lyw.displayUnit');
+            }
+            if (window.localStorage.getItem('lyw.displayDate')) {
+                displayDate = window.localStorage.getItem('lyw.displayDate');
+            }
+        }
+    },
+
+    //365 x 24 x 60 x 60 x1000
+    //30 x 24 x 60 x 60 x1000
+    //7 x 24 x 60 x 60 x1000
+    //1 x 24 x 60 x 60 x1000
 
     locationError = function (err) {
         console.log(err);
@@ -148,11 +180,13 @@ akqa.base.temperature = (function () {
     init = (function () {
         getLocation();
         addEventHandlers();
-
+        getUserPrefs();
+        updateUnitDisplay();
+        updateDateDisplay();
         $(document).bind('touchmove', function(e) {
             e.preventDefault();
         });
     }());
 
-})();
+})(window, window.document);
 

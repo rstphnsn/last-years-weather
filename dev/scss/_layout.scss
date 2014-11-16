@@ -33,10 +33,10 @@ main {
 }
 
 .content {
+    display: block;
     opacity: 0;
     padding: 60px 15px 0;
     text-align: left;
-    display: block;
 }
 
 .content.loaded {
@@ -52,17 +52,17 @@ main {
 
 .weather div {
     padding: 10px 0 0 0;
-    width: 100px;
+    width: 110px;
 }
 
 .settings .units,
 .settings .dates {
-    position: absolute;
     bottom: 0;
-    padding: 20px;
-    left: 0;
     box-sizing: border-box;
     display: flex;
+    left: 0;
+    padding: 15px;
+    position: absolute;
 }
 
 .settings .dates {
@@ -73,11 +73,11 @@ main {
 .settings label {
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
-    width: 34px;
-    margin-right: 5px;
     height: 34px;
     line-height: 34px;
+    margin-right: 5px;
     text-align: center;
+    width: 34px;
 }
 
 .settings .selected {
@@ -85,13 +85,13 @@ main {
 }
 
 .settings input {
-    visibility: hidden;
-    position: absolute;
-    top: -50px;
+    height: 0;
     left: -50px;
     overflow: hidden;
+    position: absolute;
+    top: -50px;
+    visibility: hidden;
     width: 0;
-    height: 0;
 }
 
 

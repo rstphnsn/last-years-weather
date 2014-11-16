@@ -35,7 +35,6 @@ module.exports = function (grunt) {
                 dest: 'dev/js/modules/',
                 ext: '.js'
             }
-
         },
 
         jshint: {
@@ -174,17 +173,6 @@ module.exports = function (grunt) {
             }
         },
 
-        jasmine: {
-            app: {
-                src: ['dev/js/modules/*.js','dev/js/pages/*.js'],
-                options: {
-                    specs: 'dev/js/tests/*.spec.js',
-                    vendor: ['html/assets/js/modernizr.custom.js','html/assets/js/jquery.js','html/assets/js/libs.min.js'],
-                    helpers: 'dev/js/tests/*.helper.js'
-                }
-            }
-        },
-
         modernizr: {
             site: {
                 'devFile': 'dev/js/libs/modernizr.js',
@@ -200,54 +188,16 @@ module.exports = function (grunt) {
             site: {
                 src: 'html/assets/css/styles.css'
             }
-        },
-
-        manifest: {
-            generate: {
-                options: {
-                    cache: [
-                        'html/assets/images/spinner.png',
-                        'html/assets/js/jquery.js',
-                        'html/assets/js/modernizr.custom.js',
-                        'html/assets/js/app.min.js',
-                        'html/assets/css/styles.css'
-                    ],
-                    network: ['*'],
-                    fallback: ['/ /offline.html'],
-                    preferOnline: false,
-                    verbose: true,
-                    timestamp: true,
-                    hash: false
-                },
-                src: [
-                    '/',
-                    'login/',
-                    'training/',
-                    'training/week-01/',
-                    'training/week-01/day-01/',
-                    'latest/',
-                    'race/',
-                    'me/'
-                ],
-                dest: 'mfc.appcache'
-            }
         }
 
     });
 
-    // With AppCache
-    //grunt.registerTask('bust-appCache', ['manifest']);
-    //grunt.registerTask('js', ['clean:js', 'copy:jquery', 'uglify', 'bust-appCache']);
-    //grunt.registerTask('scss', ['clean:css', 'sass:prod', 'bust-appCache']);
-
-    // No AppCache
-    grunt.registerTask('js', ['coffee:compile', 'jshint', 'jasmine', 'clean:js', 'copy:jquery', 'uglify:js', 'uglify:libs', 'modernizr', 'concat:js']);
+    grunt.registerTask('js', ['coffee:compile', 'jshint', 'clean:js', 'copy:jquery', 'uglify:js', 'uglify:libs', 'modernizr', 'concat:js']);
     grunt.registerTask('scss', ['clean:css', 'sass:prod', 'autoprefixer:site', 'modernizr']);
-
     grunt.registerTask('images', ['clean:images', 'copy:images']);
     grunt.registerTask('fonts', ['clean:fonts', 'copy:fonts']);
-
     grunt.registerTask('assembleio', ['clean:html', 'assemble', 'copy:root']);
+
     // Targets
     grunt.registerTask('default', ['assembleio', 'js', 'scss', 'images', 'fonts']);
 };

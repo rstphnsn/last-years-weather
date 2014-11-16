@@ -92,7 +92,7 @@ rps.lyw.app = (function (window, document) {
             lastYearsTemperature = null;
             todaysTemperature = null;
 
-            $('.content').addClass('loaded');
+            $('.main').addClass('loaded');
         }
     },
 
@@ -132,7 +132,7 @@ rps.lyw.app = (function (window, document) {
     },
 
     resetPage = function () {
-        $('.content').removeClass('loaded');
+        $('.main').removeClass('loaded');
     },
 
     getLocation = function () {

@@ -7,37 +7,29 @@ title: "The weather last year"
 published: true
 layout: page.hbs
 ---
+            <div class="content">
+                <h1 class="summary"></h1>
+                <div class="weather">
+                    <div class="temperature-today">
+                        <h2>Today</h2>
+                        <p class="temperature"></p>
+                    </div>
+                    <div class="temperature-last-year">
+                        <h2>Last year</h2>
+                        <p class="temperature"></p>
+                    </div>
+                </div>
+            </div>
 
-<div class="content">
-
-    <h1 class="summary"></h1>
-
-    <div class="weather">
-
-        <div class="temperature-today">
-            <h2>Today</h2>
-            <p class="temperature"></p>
-        </div>
-
-        <div class="temperature-last-year">
-            <h2>Last year</h2>
-            <p class="temperature"></p>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="settings">
-    <div class="units">
-        <label for="display_us"><input type="radio" name="tempUnit" id="display_us" value="us">℉</label>
-        <label for="display_si"><input type="radio" name="tempUnit" id="display_si" value="si">℃</label>
-    </div>
-    <div class="dates">
-        <label for="display_year"><input type="radio" name="date" id="display_year" value="year">Y</label>
-        <label for="display_month"><input type="radio" name="date" id="display_month" value="month">M</label>
-        <label for="display_week"><input type="radio" name="date" id="display_week" value="week">W</label>
-        <label for="display_day"><input type="radio" name="date" id="display_day" value="day">D</label>
-    </div>
-
-</div>
+            <div class="settings">
+                <div class="units">
+                    <label for="display_us"><input type="radio" name="tempUnit" id="display_us" value="us">℉</label>
+                    <label for="display_si"><input type="radio" name="tempUnit" id="display_si" value="si">℃</label>
+                </div>
+                <div class="dates">
+                    <label for="display_year"><input type="radio" name="date" id="display_year" value="year">Y</label>
+                    <label for="display_month"><input type="radio" name="date" id="display_month" value="month">M</label>
+                    <label for="display_week"><input type="radio" name="date" id="display_week" value="week">W</label>
+                    <label for="display_day"><input type="radio" name="date" id="display_day" value="day">D</label>
+                </div>
+            </div>

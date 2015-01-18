@@ -63,12 +63,13 @@ main {
     box-sizing: border-box;
     display: flex;
     left: 0;
-    padding: 15px;
+    padding: 20px;
     position: absolute;
 }
 
 .settings .dates {
-    left: 110px;
+    left: auto;
+    right: -5px;
     z-index: 3;
 }
 
@@ -118,6 +119,13 @@ main {
 
     .weather div {
         padding: 50px 0 0;
+    }
+
+    .settings label {
+        height: 44px;
+        line-height: 44px;
+        margin-right: 5px;
+        width: 44px;
     }
 }
 

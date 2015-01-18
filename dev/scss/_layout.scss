@@ -24,7 +24,7 @@ body {
     height: 100%;
 }
 
-main {
+.main {
     height: 100%;
     margin: 0 auto;
     max-width: 560px;
@@ -43,7 +43,7 @@ main {
 }
 
 
-/*  ## LAYOUT  ----------------------------------------------------------------------*/
+/*  ## CONTENT  ---------------------------------------------------------------------*/
 
 .weather {
     display: table;
@@ -52,7 +52,7 @@ main {
     margin: 0 auto
 }
 
-.weather div {
+.weather .result {
     display: table-cell;
     width: 50%;
 }
@@ -73,9 +73,11 @@ main {
     z-index: 3;
 }
 
-.settings label {
+.settings .btn {
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
+    cursor: pointer;
+    display: block;
     height: 34px;
     line-height: 34px;
     margin-right: 5px;
@@ -87,18 +89,8 @@ main {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.settings input {
-    height: 0;
-    left: -50px;
-    overflow: hidden;
-    position: absolute;
-    top: -50px;
-    visibility: hidden;
-    width: 0;
-}
 
-
-/*  ## LAYOUT  ----------------------------------------------------------------------*/
+/*  ## MEDIA QUERIES  ---------------------------------------------------------------*/
 
 @media screen and (min-height: 400px) {
 
@@ -117,11 +109,7 @@ main {
         padding: 100px 15px 0;
     }
 
-    .weather div {
-        padding: 50px 0 0;
-    }
-
-    .settings label {
+    .settings .btn {
         height: 44px;
         line-height: 44px;
         margin-right: 5px;
@@ -135,9 +123,5 @@ main {
         display: table-cell;
         padding: 0 15px;
         vertical-align: middle;
-    }
-
-    .weather div {
-        padding: 50px 0 0;
     }
 }

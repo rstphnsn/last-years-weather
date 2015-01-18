@@ -115,7 +115,7 @@ rps.lyw.app = (function (window, $, document) {
 
     updateControls = function () {
         $controls.find('.selected').removeClass('selected');
-        $controls.find('[value=' + settings.unit + '], [value=' + settings.date + ']').parent().addClass('selected');
+        $controls.find('[data-value=' + settings.unit + '], [data-value=' + settings.date + ']').addClass('selected');
     },
 
     retrieveSettings = function () {
@@ -145,8 +145,8 @@ rps.lyw.app = (function (window, $, document) {
         getForecast();
         
         // Add listener
-        $controls.on('change', 'input', function () {
-            settings[$(this).attr('name')] = $(this).val();
+        $controls.on('click', '.btn', function () {
+            settings[$(this).data('name')] = $(this).data('value');
             $main.removeClass('loaded');
             storeSettings();
             updateControls();

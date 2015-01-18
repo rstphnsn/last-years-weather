@@ -10,11 +10,11 @@ layout: page.hbs
             <div class="content">
                 <h1 class="summary"></h1>
                 <div class="weather">
-                    <div class="temperature-today">
+                    <div class="result temperature-today">
                         <h2>Today</h2>
                         <p class="temperature"></p>
                     </div>
-                    <div class="temperature-last-year">
+                    <div class="result temperature-last-year">
                         <h2>Last year</h2>
                         <p class="temperature"></p>
                     </div>
@@ -23,13 +23,13 @@ layout: page.hbs
 
             <div class="settings controls">
                 <div class="units">
-                    <label><input type="radio" name="unit" value="us">˚F</label>
-                    <label><input type="radio" name="unit" value="si">˚C</label>
+                    <div class="btn" data-name="unit" data-value="us">˚F</div>
+                    <div class="btn" data-name="unit" data-value="si">˚C</div>
                 </div>
                 <div class="dates">
-                    <label><input type="radio" name="date" value="year">Y</label>
-                    <label><input type="radio" name="date" value="month">M</label>
-                    <label><input type="radio" name="date" value="week">W</label>
-                    <label><input type="radio" name="date" value="day">D</label>
+                    <div class="btn" data-name="date" data-value="year">Y</div>
+                    <div class="btn" data-name="date" data-value="month">M</div>
+                    <div class="btn" data-name="date" data-value="week">W</div>
+                    <div class="btn" data-name="date" data-value="day">D</div>
                 </div>
             </div>

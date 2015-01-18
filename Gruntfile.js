@@ -26,6 +26,21 @@ module.exports = function (grunt) {
             }
         },
 
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [{
+                    cwd: 'html',
+                    dest: 'html',
+                    expand: true,
+                    src: '**/*.html'
+                }]
+            }
+        },
+
         coffee: {
             compile: {
                 expand: true,
@@ -196,7 +211,7 @@ module.exports = function (grunt) {
     grunt.registerTask('scss', ['clean:css', 'sass:prod', 'autoprefixer:site', 'modernizr']);
     grunt.registerTask('images', ['clean:images', 'copy:images']);
     grunt.registerTask('fonts', ['clean:fonts', 'copy:fonts']);
-    grunt.registerTask('assembleio', ['clean:html', 'assemble', 'copy:root']);
+    grunt.registerTask('assembleio', ['clean:html', 'assemble', 'copy:root', 'htmlmin']);
 
     // Targets
     grunt.registerTask('default', ['assembleio', 'js', 'scss', 'images', 'fonts']);

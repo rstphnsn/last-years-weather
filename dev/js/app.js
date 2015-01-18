@@ -12,7 +12,7 @@ rps.lyw.app = (function (window, $, document) {
         $tempThenHeader = $('.temperature-last-year h2'),
         $message = $('h1'),
 
-        forecastApiKey = "80bafaf6564f9d766fc973884955088b",
+        forecastApiKey = "****",
         url = "https://api.forecast.io/forecast/",
         
         tempNow,

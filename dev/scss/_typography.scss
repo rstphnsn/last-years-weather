@@ -1,65 +1,41 @@
-
-$benton-sans-light-url: "../fonts/benton-sans/light/de72ba14-fdff-4f82-9e20-0479255e5b5e-";
-
-@font-face {
-    font-family: "Benton Sans Light";
-    src: url("#{$benton-sans-light-url}2.eot");
-    src: url("#{$benton-sans-light-url}2.eot?#iefix") format("embedded-opentype"),
-         url("#{$benton-sans-light-url}3.woff") format("woff"),
-         url("#{$benton-sans-light-url}1.ttf") format("truetype"),
-         url("#{$benton-sans-light-url}4.svg#akqa-2014") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
-
-%benton-light {
-    font-family: "Benton Sans Light", Arial, sans-serif;
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 100%;
 }
 
 h1 {
-    @extend %benton-light;
     color: #FFF;
     font-size: 35px;
-    font-weight: normal;
+    font-weight: 300;
     line-height: 40px;
     margin: 0 0 20px;
 }
 
 h2 {
-    @extend %benton-light;
     color: #FFF;
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 300;
     line-height: 30px;
     margin: 0 0 10px;
 }
 
 p {
-    @extend %benton-light;
     color: #FFF;
     line-height: 24px;
     font-size: 24px;
+    font-weight: 300;
     margin: 0;
-}
-
-.error {
-    color: #F00;
 }
 
 .degree {
     letter-spacing: -0.15em;
 }
 
-.unit {
-}
-
-
-
 @media screen and (min-height: 400px) {
 
     h1 {
         font-size: 45px;
-        line-height: 45px;
+        line-height: 55px;
     }
 
     h2 {

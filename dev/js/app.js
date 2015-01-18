@@ -82,7 +82,7 @@ rps.lyw.app = (function (window, document) {
             } else if (todaysTemperature < lastYearsTemperature) {
                 temperatureMessage = 'It’s ' + Math.abs(temperatureDifference) + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' colder<br>than ' + makeDateString(displayDate).toLowerCase();
             } else {
-                temperatureMessage = 'It’s the same temperature as ' + makeDateString(displayDate).toLowerCase();
+                temperatureMessage = 'It’s the same temperature<br>as ' + makeDateString(displayDate).toLowerCase();
             }
 
             $('h1').empty().append(temperatureMessage);

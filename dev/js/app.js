@@ -4,8 +4,7 @@ rps.lyw = rps.lyw || {};
 rps.lyw.app = (function (window, document) {
     'use strict';
 
-    var init,
-        forecastApiKey = "80bafaf6564f9d766fc973884955088b",
+    var forecastApiKey = "80bafaf6564f9d766fc973884955088b",
         url = "https://api.forecast.io/forecast/",
         lastYearsTemperature = null,
         todaysTemperature = null,
@@ -79,9 +78,9 @@ rps.lyw.app = (function (window, document) {
             temperatureDifference = todaysTemperature - lastYearsTemperature;
 
             if (todaysTemperature > lastYearsTemperature) {
-                temperatureMessage = 'It’s ' + temperatureDifference  + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' warmer than ' + makeDateString(displayDate).toLowerCase();
+                temperatureMessage = 'It’s ' + temperatureDifference  + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' warmer<br>than ' + makeDateString(displayDate).toLowerCase();
             } else if (todaysTemperature < lastYearsTemperature) {
-                temperatureMessage = 'It’s ' + Math.abs(temperatureDifference) + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' colder than ' + makeDateString(displayDate).toLowerCase();
+                temperatureMessage = 'It’s ' + Math.abs(temperatureDifference) + '<span class="degree">˚</span><span class="unit">' + units[displayUnit] + '</span>' + ' colder<br>than ' + makeDateString(displayDate).toLowerCase();
             } else {
                 temperatureMessage = 'It’s the same temperature as ' + makeDateString(displayDate).toLowerCase();
             }
@@ -168,25 +167,18 @@ rps.lyw.app = (function (window, document) {
         }
     },
 
-    // 365 x 24 x 60 x 60 x 1000
-    // 30 x 24 x 60 x 60 x 1000
-    // 7 x 24 x 60 x 60 x 1000
-    // 1 x 24 x 60 x 60 x 1000
-
     locationError = function (err) {
         console.log(err);
     };
 
-    init = (function () {
-        getLocation();
-        addEventHandlers();
-        getUserPrefs();
-        updateUnitDisplay();
-        updateDateDisplay();
-        $(document).bind('touchmove', function(e) {
-            e.preventDefault();
-        });
-    }());
+    getLocation();
+    addEventHandlers();
+    getUserPrefs();
+    updateUnitDisplay();
+    updateDateDisplay();
+    $(document).bind('touchmove', function (e) {
+        e.preventDefault();
+    });
 
 })(window, window.document);
 

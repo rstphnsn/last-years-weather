@@ -17,8 +17,10 @@ logs/
 # SASS Cache files
 .sass-cache/
 
-# Generated CSS files
+# Generated build files
 html/
+
+secrets.json
 
 
 # ------------
